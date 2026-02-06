@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from "react/jsx-runtime";
+import "./App.css";
+import FormularioCadastro from "./components/formulario_cadastro/formulario_cadastro";
+import { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  render() {
+    return (
+      <Fragment>
+        <h1>Formulário de Cadastro</h1>
+        <FormularioCadastro />
+      </Fragment>
+    );
+  }
 }
 
 export default App;
