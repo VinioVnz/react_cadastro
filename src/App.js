@@ -1,4 +1,3 @@
-import { Fragment } from "react/jsx-runtime";
 import "./App.css";
 import FormularioCadastro from "./components/formulario_cadastro/formulario_cadastro";
 import { Component } from "react";
