@@ -4,27 +4,23 @@ import TextField from "@mui/material/TextField";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-function FormularioCadastro() {
+function FormularioCadastro({onSubmit}) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
+  const [promocoes, setPromocoes] = useState(true);
+  const [novidades, setNovidades] = useState(true);
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        console.log(nome);
-        console.log(sobrenome);
-        console.log(cpf);
+        onSubmit({nome, sobrenome, cpf, novidades, promocoes})
       }}
     >
       <TextField
         value={nome}
         onChange={(event) => {
-          let tempNome = event.target.value;
-          if (tempNome.length >= 3) {
-            tempNome = tempNome.substr(0, 3);
-          }
-          setNome(tempNome);
+          setNome(event.target.value);
         }}
         id="nome"
         label="Nome"
@@ -57,12 +53,28 @@ function FormularioCadastro() {
         margin="normal"
       />
       <FormControlLabel
-        control={<Switch name="promocoes" defaultChecked={true} />}
+        control={
+          <Switch
+            onChange={(event) => {
+              setPromocoes(event.target.checked);
+            }}
+            name="promocoes"
+            checked={promocoes}
+          />
+        }
         label="Promoções"
       />
 
       <FormControlLabel
-        control={<Switch name="novidades" defaultChecked={true} />}
+        control={
+          <Switch
+            onChange={(event) => {
+              setNovidades(event.target.checked);
+            }}
+            name="novidades"
+            checked={novidades}
+          />
+        }
         label="Novidades"
       />
 
