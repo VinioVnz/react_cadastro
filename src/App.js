@@ -15,14 +15,21 @@ class App extends Component {
         <Typography variant="h3" align="center" component="h1">
           Formulário de Cadastro
         </Typography>
-        <FormularioCadastro onSubmit={aoEnviarForm}/>
+        <FormularioCadastro onSubmit={aoEnviarForm} verifyCpf={verifyCpf}/>
       </Container>
     );
   }
 }
 
 function aoEnviarForm(dados) {
-  console.log(dados)
+  console.log(dados);
 }
 
+function verifyCpf(cpf) {
+  if (cpf.length !== 11) {
+    return { valido: false, texto: "CPF deve ter 11 digitos"};
+  } else {
+    return { valido: true, texto: "" }
+  }
+}
 export default App;

@@ -4,17 +4,18 @@ import TextField from "@mui/material/TextField";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-function FormularioCadastro({onSubmit}) {
+function FormularioCadastro({ onSubmit,  verifyCpf}) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
   const [promocoes, setPromocoes] = useState(true);
   const [novidades, setNovidades] = useState(true);
+  const [erros, setErros] = useState({ cpf: { valido: true, texto: "" } });
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onSubmit({nome, sobrenome, cpf, novidades, promocoes})
+        onSubmit({ nome, sobrenome, cpf, novidades, promocoes });
       }}
     >
       <TextField
@@ -45,6 +46,12 @@ function FormularioCadastro({onSubmit}) {
         value={cpf}
         onChange={(event) => {
           setCpf(event.target.value);
+        }}
+        error={!erros.cpf.valido}
+        helperText={erros.cpf.texto}
+        onBlur={(event) => {
+          const isValid = verifyCpf(cpf)
+          setErros({cpf: isValid})
         }}
         id="cpf"
         label="CPF"
